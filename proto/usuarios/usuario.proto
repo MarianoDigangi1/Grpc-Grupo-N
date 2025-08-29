@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package gestionusuarios;
+
+// Rol de usuario
+enum UserRole {
+  ROLE_UNSPECIFIED = 0;
+  PRESIDENTE = 1;
+  VOCAL = 2;
+  COORDINADOR = 3;
+  VOLUNTARIO = 4;
+}
+
+enum UserStatus {
+  STATUS_UNSPECIFIED = 0;
+  ACTIVO = 1;
+  INACTIVO = 2;
+}
+
+// Modelo usuario
+message User {
+  string id = 1;                
+  string username = 2;
+  string nombre = 3;
+  string apellido = 4;
+  string telefono = 5;
+  string email = 6;
+  UserRole rol = 7; 
+  UserStatus status = 8; 
+}
+
+/***
+** Request / Respuesta
+***/
+message CreateUserRequest {
+  string username = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string telefono = 4;
+  string email = 5;
+  UserRole rol = 6;
+}
+
+message CreateUserResponse {
+  User user = 1;
+  string tempPassword = 2; 
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string username = 2;
+  string nombre = 3;
+  string apellido = 4;
+  string telefono = 5;
+  string email = 6;
+  UserRole rol = 7;
+  UserStatus status = 8;
+}
+
+message UpdateUserResponse {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message DeleteUserResponse {
+  User user = 1;   
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message ListUsersRequest {}
+
+message ListUsersResponse {
+  repeated User users = 1;
+}
+
+// ===== SERVICE =====
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+}
