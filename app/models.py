@@ -9,7 +9,7 @@ class RolEnum(str, enum.Enum):
     Voluntario = "Voluntario"
 
 class Usuario(Base):
-    tablename = "usuarios"
+    __tablename__ = "usuarios"
 
     id = Column(Integer, primary_key=True, index=True)
     nombreUsuario = Column(String(50), unique=True, nullable=False)

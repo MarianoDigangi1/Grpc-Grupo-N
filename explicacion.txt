@@ -1,0 +1,18 @@
+=====================================
+Usuarios a utilizar
+juan@gmail.com
+KhDJZvTJuPM
+
+delfi@gmail.com
+C2Rtm0_JMh4
+=====================================
+Anotaciones en grpc
+from . import usuarios_pb2 as usuarios__pb2
+
+Comando a tirar
+python -m grpc_tools.protoc -Iapp --python_out=app/proto --grpc_python_out=app/proto app/proto/usuarios.proto
+
+Como manejo la base de datos? Utilizo models.py.
+Como mapeo la informacion? mediante el schemas.py.
+
+

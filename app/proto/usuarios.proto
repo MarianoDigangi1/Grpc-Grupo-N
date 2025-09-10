@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package usuarios;
+
+message CrearUsuarioRequest {
+  string nombreUsuario = 1;
+  string nombre = 2;
+  string apellido = 3;
+  string telefono = 4;
+  string emailUnico = 5;
+  string rol = 6;
+}
+
+message ModificarUsuarioRequest {
+  int32 id = 1;
+  string nombreUsuario = 2;
+  string nombre = 3;
+  string apellido = 4;
+  string telefono = 5;
+  string emailUnico = 6;
+  string rol = 7;
+  string estado = 8; // "activo" o "inactivo"
+}
+
+// Baja logica
+message BajaUsuarioRequest {
+    int32 id = 1;
+}
+
+message UsuarioResponse {
+  string mensaje = 1;
+}
+
+
+// Login
+
+message LoginRequest {
+  string identificador = 1; // Puede ser nombreUsuario o emailUnico
+  string clave = 2;
+}
+
+message LoginResponse {
+  string mensaje = 1;
+  string nombreUsuario = 2;
+  string emailUnico = 3;
+  string rol = 4;
+}
+
+service UsuarioService {
+  rpc CrearUsuario (CrearUsuarioRequest) returns (UsuarioResponse);
+  rpc ModificarUsuario (ModificarUsuarioRequest) returns (UsuarioResponse);
+  rpc BajaUsuario (BajaUsuarioRequest) returns (UsuarioResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+}

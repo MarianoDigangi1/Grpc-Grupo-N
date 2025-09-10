@@ -18,10 +18,12 @@ class UsuarioBase(BaseModel):
     emailUnico: EmailStr
     rol: RolEnum
 
-
 class UsuarioCreate(UsuarioBase):
     pass
 
+class UsuarioUpdate(UsuarioBase):
+    estaActivo: bool
+    
 class UsuarioResponse(UsuarioBase):
     id: int
     estaActivo: bool
@@ -31,11 +33,11 @@ class UsuarioResponse(UsuarioBase):
 
 # Iniciar Sesion
 class LoginRequest(BaseModel):
-    usuario_o_email: str
+    identificador: str
     clave: str
 
 class LoginResponse(BaseModel):
     mensaje: str
-    nombreUsuario: str | None = None
+    identificador: str | None = None
     emailUnico: str | None = None
-    rol: str | None = None
+    rol: str | None = None 
